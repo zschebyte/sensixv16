@@ -1,7 +1,7 @@
 {
   "innerSmartSwictherTitle": "DPI Smart swicther",
-  "innerSmartSwictherDesk": "System pintar akan membantu dpi otomatis berjalan di atas freefire langsung ( Sensivity 236% ).",
-  "innerHeadtrickTitle": "Headtrick 32%",
+  "innerSmartSwictherDesk": "System pintar akan membantu dpi otomatis berjalan di atas freefire langsung ( Sensivity 192% ).",
+  "innerHeadtrickTitle": "Headtrick 26%",
   "innerHeadtrickDesk": "Fiture ini membantu drag semakin smooth dan minim getaran pada croshair freefire ( not aimlock )",
   "innerSettingsMethodeTitle": "Settings Methode",
   "innerSettingsMethodeDesk": "System ini akan membantu setup device otomatis untuk experience drag lebih ringan.",
@@ -9,6 +9,6 @@
   "innerSensivityMaximumDesk": "System software meningkatkan nilai Sensivity yang maximum sesuai device.",
   "innerOptimizeTitle": "Optimize FreeFire",
   "innerOptimizeTitleDesk": "Beberapa device akan mengalami peningkatan experience melalui gameplay yang smooth.",
-  "innerSmoothTouchTitle": "Smooth Touch 20%",
+  "innerSmoothTouchTitle": "Smooth Touch 15%",
   "smoothTouchDesk": "Akan membuat sentuhan menjadi stabil dan sedikit lebih halus dan cepat melalui software."
 }
