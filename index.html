@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZSCHELABS - Download Center for SENSIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0066ff;
+      --primary-dark: #0047ab;
+      --accent: #00ff88;
+      --patch: #ff6b00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #f0f8ff, #e3f2ff);
+      color: #1b1f23;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      backdrop-filter: blur(12px);
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .decorative-grid {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at 50% 50%, 
+        rgba(0, 102, 255, 0.05) 0%, 
+        transparent 70%);
+      pointer-events: none;
+    }
+
+    .header {
+      position: relative;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .hero-banner {
+      width: 100%;
+      height: 280px;
+      border-radius: 16px;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      border: 3px solid white;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-group {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .main-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .main-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .download-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid #e3f2ff;
+      box-shadow: 0 8px 24px rgba(0, 102, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      background-image: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.8),
+        rgba(240, 247, 255, 0.6)
+      );
+    }
+
+    .download-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 12px 32px rgba(0, 102, 255, 0.15);
+    }
+
+    .download-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+        transparent,
+        rgba(0, 102, 255, 0.05),
+        transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+      pointer-events: none;
+    }
+
+    .download-card:hover::before {
+      animation: shine 1.5s;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0, 102, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon ion-icon {
+      font-size: 24px;
+      color: var(--primary);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    .download-button:hover::before {
+      left: 100%;
+    }
+
+    .version-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .patch-button {
+      background: linear-gradient(135deg, var(--patch), #ff5500);
+      position: relative;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+      border: none;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .patch-button:hover {
+      background: linear-gradient(135deg, #ff5500, #ff3c00);
+    }
+
+    .download-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .download-card.hot-card {
+      border: 2px solid #ff4400;
+      box-shadow: 0 8px 24px rgba(255, 60, 0, 0.2);
+      animation: hotPulse 2s infinite;
+    }
+
+    .hot-card .version-tag {
+      background: linear-gradient(135deg, #ff2200, #ff6b00);
+      color: white;
+      animation: hotText 1.5s infinite;
+    }
+
+    .hot-card .download-button {
+      background: linear-gradient(135deg, #ff6b00, #ff2200);
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+    }
+
+    .hot-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, 
+        rgba(255,80,0,0.15) 0%, 
+        rgba(255,30,0,0) 70%);
+      transform: rotate(45deg);
+      animation: hotGlow 3s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0% { transform: rotate(45deg) translateX(-150%); }
+      100% { transform: rotate(45deg) translateX(150%); }
+    }
+
+    @keyframes hotPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes hotText {
+      0% { text-shadow: 0 0 8px rgba(255, 60, 0, 0.3); }
+      50% { text-shadow: 0 0 15px rgba(255, 60, 0, 0.6); }
+      100% { text-shadow: 0 0 8px rgba(255, 60, 0, 0.3); }
+    }
+
+    @keyframes hotGlow {
+      0% { opacity: 0.6; transform: rotate(45deg) scale(0.9); }
+      50% { opacity: 1; transform: rotate(45deg) scale(1.1); }
+      100% { opacity: 0.6; transform: rotate(45deg) scale(0.9); }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+      
+      .main-title {
+        font-size: 2rem;
+      }
+      
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .button-group {
+        position: static;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="decorative-grid"></div>
+    
+    <div class="header">
+      <img src="banner.jpg" alt="ZscheLabs Banner" class="hero-banner" />
+      <h1 class="main-title">Download Center</h1>
+      <div class="button-group">
+        <a href="#" class="download-button patch-button">
+          <ion-icon name="construct-outline"></ion-icon>
+          Security Patch
+        </a>
+      </div>
+    </div>
+
+    <div class="download-grid">
+      <div class="download-card">
+        <span class="version-tag">v16</span>
+        <div class="card-header">
+          <div class="card-icon">
+            <ion-icon name="rocket-outline"></ion-icon>
+          </div>
+          <h3 class="card-title">SENSIX16 - WINX</h3>
+        </div>
+        <p class="card-subtitle">
+        	<br><u>⚡ Sensitivity 192% | 🎯 Headtrick 27% | 🚀 Smooth Touch 15%</u></br>
+            A web-based Android non-root optimization tool featuring screen smoothing functionality. Designed with Shizuku integration, it enhances gaming performance in Free Fire and Free Fire MAX.
+        </p>
+        <div class="download-actions">
+          <a href="https://github.com/zschebyte/sensixv16/raw/refs/heads/main/user/optionalUpdate/sensix-winx.zip" class="download-button">
+            <ion-icon name="cloud-download-outline"></ion-icon>
+            Download 
+          </a>
+        </div>
+      </div>
+
+      <div class="download-card">
+        <span class="version-tag">v16</span>
+        <div class="card-header">
+          <div class="card-icon">
+            <ion-icon name="rocket-outline"></ion-icon>
+          </div>
+          <h3 class="card-title">SENSIX - SUPX</h3>
+        </div>
+        <p class="card-subtitle">
+        	<br><u>⚡ Sensitivity 143% | 🎯 Headtrick 20% | 🚀 Smooth Touch 12%</u></br>
+            A web-based Android non-root optimization tool featuring screen smoothing functionality. Designed with Shizuku integration, it enhances gaming performance in Free Fire and Free Fire MAX.
+        </p>
+        <div class="download-actions">
+          <a href="https://github.com/zschebyte/sensixv16/raw/refs/heads/main/user/optionalUpdate/sensix-supx.zip" class="download-button">
+            <ion-icon name="cloud-download-outline"></ion-icon>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <div class="download-card hot-card">
+        <span class="version-tag">v16</span>
+        <div class="card-header">
+          <div class="card-icon">
+            <ion-icon name="rocket-outline"></ion-icon>
+          </div>
+          <h3 class="card-title">SENSIX - HULX</h3>
+        </div>
+        <p class="card-subtitle">
+        	<br><u>⚡ Sensitivity 236% | 🎯 Headtrick 32% | 🚀 Smooth Touch 20%</u></br>
+            A web-based Android non-root optimization tool featuring screen smoothing functionality. Designed with Shizuku integration, it enhances gaming performance in Free Fire and Free Fire MAX.
+        </p>
+        <div class="download-actions">
+          <a href="https://github.com/zschebyte/sensixv16/raw/refs/heads/main/user/optionalUpdate/sensix-hulx.zip" class="download-button">
+            <ion-icon name="cloud-download-outline"></ion-icon>
+            Download
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</body>
+    </html>
